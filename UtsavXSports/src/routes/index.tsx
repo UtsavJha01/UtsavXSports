@@ -36,7 +36,7 @@ const channels: Channel[] = [
   { group: "star", name: "Star Sports Khel", id: "SSK", tag: "Sports" },
   { group: "sony", name: "Sony Sports 1 SD", id: "STEN1", tag: "SD" },
   { group: "sony", name: "Sony Sports 2 SD", id: "STEN2", tag: "SD" },
-  { group: "sony", name: "Sony Sports 3 SD", id: "STEN3", tag: "SD" },
+  { group: "sony", name: "Sony LIV", id: "STEN3", tag: "SD" },
   { group: "sony", name: "Sony Sports 5 SD", id: "STEN5", tag: "SD" },
   { group: "sony", name: "Sony SET", id: "SETHD", tag: "Entertainment" },
 ];
