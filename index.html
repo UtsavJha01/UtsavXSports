@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d18">
+<title>UtsavXSports | Sports Channels</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #090d18;
+  --surface: #111a29;
+  --line: rgba(255,255,255,.09);
+  --text: #f6f8fc;
+  --muted: #9ba8bc;
+  --accent: #ff4e62;
+  --green: #49d7a3;
+  --shadow: 0 24px 70px rgba(0,0,0,.3);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 14% -5%, rgba(103,124,255,.22), transparent 37%),
+    radial-gradient(ellipse at 90% 10%, rgba(255,78,98,.14), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .13;
+  background-image: radial-gradient(#9eabc51f .7px, transparent .7px);
+  background-size: 6px 6px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+button, input { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+
+header {
+  height: 76px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(9,13,24,.78);
+  backdrop-filter: blur(18px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav {
+  width: min(1240px, 92%);
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  font: 800 17px "Manrope", sans-serif;
+  letter-spacing: -.5px;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #ff8b55);
+  box-shadow: 0 8px 24px #ff4e6240;
+  color: white;
+  font-size: 13px;
+}
+
+.brand em {
+  font-style: normal;
+  color: #aab5c7;
+  font-weight: 600;
+}
+
+.nav-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .04em;
+}
+
+.page {
+  width: min(1240px, 92%);
+  margin: 0 auto;
+  padding: 64px 0 74px;
+}
+
+.hero {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 42px;
+  animation: rise .55s both;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #c6ceff;
+  background: #7887ff18;
+  border: 1px solid #7887ff45;
+  border-radius: 99px;
+  padding: 8px 13px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+h1 {
+  font: 800 clamp(34px, 6vw, 62px)/1.08 "Manrope", sans-serif;
+  letter-spacing: -2.5px;
+  margin: 20px 0 13px;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 930px;
+  margin: auto;
+}
+
+.category-card {
+  position: relative;
+  isolation: isolate;
+  min-height: 270px;
+  overflow: hidden;
+  text-align: left;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 23px;
+  padding: 30px;
+  background: linear-gradient(145deg, #172237, #101725 75%);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+  animation: rise .55s both;
+}
+
+.category-card:nth-child(2) { animation-delay: .09s; }
+
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 15%, #ffffff0b 45%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .65s;
+}
+
+.category-card:hover::before { transform: translateX(120%); }
+
+.category-card:hover {
+  transform: translateY(-5px);
+  border-color: #ffffff35;
+  box-shadow: 0 30px 80px #0006;
+}
+
+.category-card:focus-visible,
+.back:focus-visible,
+.channel:focus-visible,
+.open-btn:focus-visible,
+.filter-chip:focus-visible {
+  outline: 3px solid #9ca9ff;
+  outline-offset: 3px;
+}
+
+.category-card::after {
+  content: "";
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  right: -55px;
+  bottom: -95px;
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(2px);
+  opacity: .22;
+}
+
+.category-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-mark {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  background: var(--mark-bg);
+  color: white;
+  font: 800 15px "Manrope", sans-serif;
+  letter-spacing: -.7px;
+  box-shadow: 0 12px 30px #0004;
+}
+
+.arrow {
+  font-size: 25px;
+  color: #8794a8;
+  transition: transform .2s;
+}
+
+.category-card:hover .arrow {
+  transform: translate(3px, -3px);
+  color: white;
+}
+
+.category-card h2 {
+  font: 800 26px "Manrope", sans-serif;
+  margin: 35px 0 7px;
+  letter-spacing: -.8px;
+}
+
+.category-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.category-count {
+  display: inline-block;
+  margin-top: 21px;
+  color: #d9deea;
+  background: #ffffff0b;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.category-star {
+  --glow: #ffb446;
+  --mark-bg: linear-gradient(135deg, #f3a531, #ee6946);
+}
+
+.category-sony {
+  --glow: #557aff;
+  --mark-bg: linear-gradient(135deg, #547aff, #9d65ff);
+}
+
+[hidden] { display: none !important; }
+
+.channel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 20px;
+  animation: rise .3s both;
+}
+
+.section-kicker {
+  display: block;
+  color: #9ca9ff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  margin-bottom: 8px;
+}
+
+.heading-copy h2 {
+  font: 800 28px "Manrope", sans-serif;
+  letter-spacing: -.8px;
+  margin: 0 0 5px;
+}
+
+.heading-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #ffffff08;
+  color: #e7ebf4;
+  padding: 10px 13px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.back:hover { background: #ffffff12; }
+
+.channel-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 20px;
+  align-items: start;
+  animation: rise .38s .04s both;
+}
+
+.player-card,
+.channel-panel {
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  background: linear-gradient(160deg, #151e2c, #101722);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.player { position: relative; aspect-ratio: 16 / 9; background: #03060b; }
+
+.player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Loading and error overlays */
+.loader,
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #03060b;
+  color: white;
+  z-index: 2;
+  padding: 24px;
+}
+
+.loader[hidden], .fallback[hidden] { display: none; }
+
+.spinner {
+  height: 38px;
+  width: 38px;
+  border: 3px solid #333d50;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin-bottom: 14px;
+}
+
+.loader span, .fallback p {
+  color: #aab5c7;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.fallback { z-index: 3; }
+.fallback h3 {
+  margin: 0 0 7px;
+  font: 700 18px "Manrope", sans-serif;
+}
+.fallback p { max-width: 390px; margin: 0 0 17px; }
+
+.open-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  background: var(--accent);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+.open-btn:hover { transform: translateY(-2px); }
+
+.player-bottom {
+  min-height: 58px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.playing {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.playing-label {
+  font-size: 9px;
+  letter-spacing: .14em;
+  color: #738198;
+  font-weight: 800;
+}
+
+.playing strong {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.live {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #ff9ba7;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.live::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+.channel-panel { position: sticky; top: 96px; }
+
+.panel-head {
+  padding: 19px 20px 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.panel-head h3 {
+  font: 800 16px "Manrope", sans-serif;
+  margin: 0 0 5px;
+}
+
+.panel-head p { margin: 0; color: var(--muted); font-size: 11px; }
+
+.result-count {
+  min-width: 27px;
+  height: 27px;
+  padding: 0 7px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #ffffff0b;
+  color: #c3cce0;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.search-box {
+  margin-top: 16px;
+  height: 42px;
+  padding: 0 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #090e18;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  color: #8997ad;
+}
+
+.search-box:focus-within {
+  border-color: #8795ff80;
+  box-shadow: 0 0 0 3px #7887ff18;
+}
+
+.search-box input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: 500 12px "DM Sans", sans-serif;
+}
+
+.search-box input::placeholder { color: #728097; }
+
+.search-box kbd {
+  padding: 3px 6px;
+  border: 1px solid #ffffff18;
+  border-radius: 5px;
+  font-size: 10px;
+  color: #728097;
+}
+
+.filter-row { display: flex; gap: 6px; margin-top: 11px; }
+
+.filter-chip {
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  background: transparent;
+  color: #8e9bb0;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-chip:hover { color: white; background: #ffffff0a; }
+
+.filter-chip.active {
+  background: #7887ff20;
+  color: #cbd2ff;
+  border-color: #7887ff40;
+}
+
+.channel-list {
+  padding: 9px;
+  max-height: 70vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #364155 transparent;
+}
+
+.channel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-align: left;
+  color: var(--text);
+  padding: 11px 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+
+.channel:hover { background: #ffffff08; }
+
+.channel.active {
+  background: #ff4e6217;
+  border-color: #ff4e624d;
+}
+
+.channel.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.channel-icon {
+  width: 43px;
+  height: 39px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #ffffff0c;
+  color: #dce3f1;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.channel.active .channel-icon {
+  background: linear-gradient(135deg, var(--accent), #ff875d);
+  color: white;
+}
+
+.channel-copy { min-width: 0; flex: 1; }
+.channel-copy strong, .channel-copy small { display: block; }
+
+.channel-copy strong { font-size: 12px; line-height: 1.35; }
+.channel-copy small { margin-top: 4px; color: var(--muted); font-size: 10px; }
+
+.channel-check {
+  opacity: 0;
+  color: #ff8795;
+  font-weight: 800;
+}
+.channel.active .channel-check { opacity: 1; }
+
+.empty-state {
+  padding: 30px 14px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.footer {
+  margin-top: 55px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #78869c;
+  font-size: 11px;
+}
+
+.footer strong { color: #dce3ef; }
+.footer a { color: #aab7cb; text-decoration: none; }
+.footer a:hover { color: white; }
+.footer-right { display: flex; gap: 18px; flex-wrap: wrap; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 900px) {
+  .channel-shell { grid-template-columns: 1fr; }
+  .channel-panel { position: static; }
+  .channel-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: 390px;
+    padding: 10px;
+    gap: 4px;
+  }
+  .page { padding-top: 48px; }
+  .panel-head { padding: 17px; }
+}
+
+@media (max-width: 600px) {
+  header { height: 66px; }
+  .nav-label { display: none; }
+  .page { width: min(100% - 30px, 500px); padding: 38px 0 45px; }
+  h1 { letter-spacing: -1.7px; }
+  .hero { margin-bottom: 29px; }
+  .hero p { font-size: 14px; }
+  .category-grid { grid-template-columns: 1fr; gap: 13px; }
+  .category-card { min-height: 210px; padding: 23px; border-radius: 19px; }
+  .category-card h2 { margin-top: 25px; font-size: 23px; }
+  .channel-heading { align-items: flex-start; flex-direction: column; }
+  .heading-copy h2 { font-size: 24px; }
+  .panel-head { padding: 15px; }
+  .search-box { height: 40px; }
+  .channel-list { grid-template-columns: 1fr; max-height: 48vh; }
+  .player { aspect-ratio: 16 / 10; }
+  .player-bottom { padding: 12px; }
+  .footer { align-items: flex-start; flex-direction: column; }
+  .footer-right { gap: 12px; }
+  .category-card:hover { transform: translateY(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero, .category-card, .channel-heading, .channel-shell { animation: none; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">US</div>
+      <div>Utsav<em>XSports</em></div>
+    </div>
+    <div class="nav-label">YOUR SPORTS CHANNEL HUB</div>
+  </div>
+</header>
+
+<main class="page">
+  <section id="categories">
+    <div class="hero">
+      <div class="eyebrow">Live sports and entertainment</div>
+      <h1>Your channels.<br><span style="color:#9ba9ff">One place.</span></h1>
+      <p>Choose your network, find your channel, and settle in for the action.</p>
+    </div>
+
+    <div class="category-grid">
+      <button class="category-card category-star" type="button" data-category="star">
+        <span class="category-top">
+          <span class="category-mark">STAR</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </span>
+        <h2>Star Sports</h2>
+        <p>Cricket, sports and regional coverage</p>
+        <span class="category-count">12 channels</span>
+      </button>
+
+      <button class="category-card category-sony" type="button" data-category="sony">
+        <span class="category-top">
+          <span class="category-mark">SONY</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </span>
+        <h2>Sony Sports</h2>
+        <p>Sports channels and Sony SET</p>
+        <span class="category-count">5 channels</span>
+      </button>
+    </div>
+  </section>
+
+  <section id="channelView" hidden>
+    <div class="channel-heading">
+      <div class="heading-copy">
+        <span class="section-kicker">CHANNEL GUIDE</span>
+        <h2 id="categoryName"></h2>
+        <p id="streamCount"></p>
+      </div>
+      <button class="back" id="backButton" type="button">← <span>All networks</span></button>
+    </div>
+
+    <div class="channel-shell">
+      <div class="player-card">
+        <div class="player">
+          <iframe
+            id="videoPlayer"
+            title="Sports channel player"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowfullscreen
+            referrerpolicy="no-referrer"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
+            src="about:blank"></iframe>
+
+          <div class="loader" id="loader" hidden aria-live="polite">
+            <div class="spinner" aria-hidden="true"></div>
+            <span>Connecting to stream…</span>
+          </div>
+
+          <div class="fallback" id="fallback" hidden>
+            <h3>Stream unavailable in the embedded player</h3>
+            <p>The provider may block embedded playback or the stream may be offline. You can try opening it directly.</p>
+            <button class="open-btn" id="openStreamButton" type="button">Open stream</button>
+          </div>
+        </div>
+
+        <div class="player-bottom">
+          <div class="playing">
+            <span class="playing-label">NOW PLAYING</span>
+            <strong id="currentName">Choose a channel</strong>
+          </div>
+          <span class="live">LIVE</span>
+        </div>
+      </div>
+
+      <aside class="channel-panel" aria-label="Channel list">
+        <div class="panel-head">
+          <div class="panel-title-row">
+            <div>
+              <h3 id="streamTitle">Available Channels</h3>
+              <p>Select a channel to load it in the player</p>
+            </div>
+            <span class="result-count" id="resultCount" aria-live="polite">17</span>
+          </div>
+
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="channelSearch" type="search" placeholder="Search channels" autocomplete="off" aria-label="Search channels">
+            <kbd>/</kbd>
+          </label>
+
+          <div class="filter-row" role="group" aria-label="Filter by quality">
+            <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-chip" type="button" data-filter="HD" aria-pressed="false">HD</button>
+            <button class="filter-chip" type="button" data-filter="SD" aria-pressed="false">SD</button>
+          </div>
+        </div>
+        <div class="channel-list" id="channelList" aria-live="polite"></div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© 2026 <strong>UtsavXSports</strong></div>
+    <div class="footer-right">
+      <a href="https://github.com/UtsavJha01" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/utsavjha01/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:utsavkumarjha6@gmail.com">Contact</a>
+    </div>
+  </footer>
+</main>
+
+<script>
+"use strict";
+
+const channels = [
+  { group: "star", name: "Star Sports 1 Hindi HD", id: "H1HD", tag: "Hindi · HD" },
+  { group: "star", name: "Star Sports 1 HD", id: "E1HD", tag: "English · HD" },
+  { group: "star", name: "Star Sports 1 SD", id: "E1SD", tag: "English · SD" },
+  { group: "star", name: "Star Sports 1 Hindi SD", id: "H1SD", tag: "Hindi · SD" },
+  { group: "star", name: "Star Sports 2 HD Hindi", id: "H2HD", tag: "Hindi · HD" },
+  { group: "star", name: "Star Sports 2 HD English", id: "E2HD", tag: "English · HD" },
+  { group: "star", name: "Star Sports 2 SD", id: "E2SD", tag: "English · SD" },
+  { group: "star", name: "Star Sports 2 Hindi SD", id: "H2SD", tag: "Hindi · SD" },
+  { group: "star", name: "Star Sports 3 SD", id: "SS3", tag: "SD" },
+  { group: "star", name: "Star Sports Select 1 SD", id: "SE1", tag: "SD" },
+  { group: "star", name: "Star Sports Select 1 HD", id: "SE1HD", tag: "HD" },
+  { group: "star", name: "Star Sports Khel", id: "SSK", tag: "Sports" },
+  { group: "sony", name: "Sony Sports 1 SD", id: "STEN1", tag: "SD" },
+  { group: "sony", name: "Sony Sports 2 SD", id: "STEN2", tag: "SD" },
+  { group: "sony", name: "Sony Sports 3 SD", id: "STEN3", tag: "SD" },
+  { group: "sony", name: "Sony Sports 5 SD", id: "STEN5", tag: "SD" },
+  { group: "sony", name: "Sony SET", id: "SETHD", tag: "Entertainment" }
+];
+
+const categories = document.getElementById("categories");
+const channelView = document.getElementById("channelView");
+const player = document.getElementById("videoPlayer");
+const loader = document.getElementById("loader");
+const fallback = document.getElementById("fallback");
+const currentName = document.getElementById("currentName");
+const streamTitle = document.getElementById("streamTitle");
+const streamCount = document.getElementById("streamCount");
+const searchInput = document.getElementById("channelSearch");
+const resultCount = document.getElementById("resultCount");
+const channelList = document.getElementById("channelList");
+const allowedStreamOrigin = "https://sonucdn-v2.pages.dev";
+
+let activeGroup = "star";
+let activeFilter = "all";
+let currentURL = "";
+let loadTimer = null;
+
+function buildStreamURL(channel) {
+  const url = new URL("/star", allowedStreamOrigin);
+  url.searchParams.set("id", channel.id);
+  return url.href;
+}
+
+function openCategory(group) {
+  activeGroup = group;
+  activeFilter = "all";
+  searchInput.value = "";
+
+  document.querySelectorAll(".filter-chip").forEach(chip => {
+    const selected = chip.dataset.filter === "all";
+    chip.classList.toggle("active", selected);
+    chip.setAttribute("aria-pressed", String(selected));
+  });
+
+  const list = channels.filter(channel => channel.group === group);
+  const title = group === "star" ? "Star Sports" : "Sony Sports";
+
+  document.getElementById("categoryName").textContent = title;
+  streamTitle.textContent = title + " Channels";
+  streamCount.textContent = list.length + " channels available";
+
+  categories.hidden = true;
+  channelView.hidden = false;
+  renderChannels(list);
+  document.getElementById("backButton").focus();
+}
+
+function renderChannels(list) {
+  channelList.replaceChildren();
+
+  const query = searchInput.value.trim().toLowerCase();
+  const filtered = list.filter(channel => {
+    const matchesText = (channel.name + " " + channel.tag).toLowerCase().includes(query);
+    const matchesQuality = activeFilter === "all" || channel.tag.toUpperCase().includes(activeFilter);
+    return matchesText && matchesQuality;
+  });
+
+  resultCount.textContent = filtered.length;
+
+  if (!filtered.length) {
+    stopLoading();
+    currentURL = "";
+    currentName.textContent = "No matching channel";
+    player.src = "about:blank";
+
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = "No channels match your search. Try another name or quality filter.";
+    channelList.append(empty);
+    return;
+  }
+
+  filtered.forEach(channel => {
+    const button = document.createElement("button");
+    button.className = "channel";
+    button.type = "button";
+    button.setAttribute("aria-pressed", "false");
+    button.innerHTML =
+      '<span class="channel-icon" aria-hidden="true"></span>' +
+      '<span class="channel-copy"><strong></strong><small></small></span>' +
+      '<span class="channel-check" aria-hidden="true">&#10003;</span>';
+
+    button.querySelector(".channel-icon").textContent = channel.group === "star" ? "STAR" : "SONY";
+    button.querySelector("strong").textContent = channel.name;
+    button.querySelector("small").textContent = channel.tag;
+    button.addEventListener("click", () => selectChannel(channel, button));
+    channelList.append(button);
+  });
+
+  const currentChannel = filtered.find(channel => buildStreamURL(channel) === currentURL);
+  if (currentChannel) {
+    const activeButton = [...channelList.querySelectorAll(".channel")].find(button =>
+      button.querySelector("strong").textContent === currentChannel.name
+    );
+    setActiveChannelButton(activeButton);
+  } else {
+    selectChannel(filtered[0], channelList.querySelector(".channel"));
+  }
+}
+
+function setActiveChannelButton(button) {
+  channelList.querySelectorAll(".channel").forEach(item => {
+    const active = item === button;
+    item.classList.toggle("active", active);
+    item.setAttribute("aria-pressed", String(active));
+  });
+}
+
+function stopLoading() {
+  if (loadTimer) {
+    clearTimeout(loadTimer);
+    loadTimer = null;
+  }
+  loader.hidden = true;
+}
+
+function selectChannel(channel, button) {
+  currentURL = buildStreamURL(channel);
+  currentName.textContent = channel.name;
+  setActiveChannelButton(button);
+
+  fallback.hidden = true;
+  loader.hidden = false;
+  player.src = currentURL;
+
+  // Cross-origin iframe loads don't reliably fire an error event.
+  // This timeout provides a usable fallback if the frame stays unresponsive.
+  if (loadTimer) clearTimeout(loadTimer);
+  loadTimer = setTimeout(() => {
+    if (currentURL) {
+      loader.hidden = true;
+      fallback.hidden = false;
+    }
+  }, 12000);
+}
+
+function goBack() {
+  stopLoading();
+  player.src = "about:blank";
+  fallback.hidden = true;
+  currentURL = "";
+  currentName.textContent = "Choose a channel";
+  channelView.hidden = true;
+  categories.hidden = false;
+  document.getElementById("categoryName").textContent = "";
+  document.querySelector("[data-category='" + activeGroup + "']").focus();
+}
+
+function openCurrentStream() {
+  if (!currentURL) return;
+  const url = new URL(currentURL);
+  if (url.origin !== allowedStreamOrigin) return;
+  window.open(url.href, "_blank", "noopener,noreferrer");
+}
+
+player.addEventListener("load", () => {
+  if (!currentURL) return;
+  stopLoading();
+  fallback.hidden = true;
+});
+
+document.getElementById("backButton").addEventListener("click", goBack);
+document.getElementById("openStreamButton").addEventListener("click", openCurrentStream);
+
+document.querySelectorAll("[data-category]").forEach(button => {
+  button.addEventListener("click", () => openCategory(button.dataset.category));
+});
+
+searchInput.addEventListener("input", () => {
+  renderChannels(channels.filter(channel => channel.group === activeGroup));
+});
+
+document.querySelectorAll(".filter-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    activeFilter = chip.dataset.filter;
+    document.querySelectorAll(".filter-chip").forEach(item => {
+      const selected = item === chip;
+      item.classList.toggle("active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
+    renderChannels(channels.filter(channel => channel.group === activeGroup));
+  });
+});
+
+// "/" focuses search; Escape clears search and restores all channels.
+document.addEventListener("keydown", event => {
+  if (event.key === "/" && !channelView.hidden && document.activeElement !== searchInput) {
+    event.preventDefault();
+    searchInput.focus();
+  }
+
+  if (event.key === "Escape" && !channelView.hidden) {
+    searchInput.value = "";
+    activeFilter = "all";
+    const allFilter = document.querySelector('[data-filter="all"]');
+    allFilter.click();
+    searchInput.blur();
+  }
+});
+
+// Best-effort popup protection for scripts running in this page.
+// Browser extensions can still block popups; this does not control the iframe's scripts.
+window.addEventListener("beforeunload", event => {
+  if (window.__allowTopNavigation) return;
+  event.preventDefault();
+  event.returnValue = "";
+});
+
+// Only permit explicit top-level navigation through a user click on the approved stream button.
+document.getElementById("openStreamButton").addEventListener("click", () => {
+  window.__allowTopNavigation = false;
+}, { once: true });
+</script>
+</body>
+</html>
